@@ -3,145 +3,151 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="围绕惠州宙邦化工项目的租房选址地图">
-  <title>惠州租房选址地图｜宙邦化工项目通勤</title>
+  <meta name="description" content="大亚湾万达商圈山景三房租房地图：精装修、家具齐全、通勤宙邦化工项目。">
+  <meta property="og:title" content="大亚湾万达租房地图">
+  <meta property="og:description" content="山景·精装·全配，兼顾宙邦化工项目通勤与防涝。">
+  <meta property="og:image" content="https://yangkaicv-gif.github.io/huizhou-rental-map/og.png">
+  <title>大亚湾万达租房地图｜山景·精装·全配</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
-    :root{--ink:#17342c;--green:#17755c;--mint:#dceee6;--cream:#f6f2e9;--paper:#fffdf8;--orange:#d86d36;--line:#d9ded7}
+    :root{--ink:#17342c;--green:#17755c;--deep:#0d5542;--mint:#dceee6;--paper:#fffdf8;--cream:#f4f0e7;--orange:#d86d36;--violet:#6657a8;--line:#d9ded7}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}
-    .top{height:70px;padding:0 clamp(18px,5vw,72px);display:flex;align-items:center;gap:30px;border-bottom:1px solid var(--line);background:rgba(255,253,248,.96);position:relative;z-index:5}
+    .top{height:70px;padding:0 clamp(18px,5vw,72px);display:flex;align-items:center;gap:28px;border-bottom:1px solid var(--line);background:rgba(255,253,248,.96);position:relative;z-index:5}
     .brand{display:flex;align-items:center;gap:10px;font-weight:900;white-space:nowrap}.brand i{display:grid;place-items:center;width:34px;height:34px;border-radius:50% 50% 50% 12%;background:var(--green);color:#fff;font-style:normal}
-    .criteria{flex:1;color:#697a74;font-size:12px}.criteria b{color:var(--green)}.nav{border:1px solid var(--ink);border-radius:999px;padding:9px 14px;font-size:12px;font-weight:800}
+    .criteria{flex:1;color:#697a74;font-size:12px}.criteria b{color:var(--green)}.nav{border:1px solid var(--ink);border-radius:999px;padding:9px 14px;font-size:12px;font-weight:800}.nav:hover{background:var(--ink);color:#fff}
     .hero{max-width:1400px;margin:auto;padding:68px clamp(22px,5vw,78px) 44px;display:grid;grid-template-columns:1.1fr .9fr;align-items:end;gap:70px}
     .eyebrow{font:700 11px Arial;letter-spacing:.22em;color:var(--orange);margin:0 0 18px}h1{font:500 clamp(48px,6vw,84px)/1 Georgia,"Songti SC",serif;letter-spacing:-.05em;margin:0}h1 em{color:var(--green);font-style:normal}
     .hero-copy>p{color:#53665f;font-size:16px;line-height:1.85;margin:0 0 24px}.verdict{border-left:4px solid var(--orange);padding:6px 0 6px 17px;font-weight:800;line-height:1.6}.verdict small{display:block;color:var(--orange);font-size:11px}
-    .workspace{max-width:1400px;min-height:700px;margin:auto;display:grid;grid-template-columns:390px 1fr;background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 25px 70px rgba(22,51,43,.09)}
+    .workspace{max-width:1400px;min-height:720px;margin:auto;display:grid;grid-template-columns:410px 1fr;background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 25px 70px rgba(22,51,43,.09)}
     .sidebar{padding:27px 20px;background:#faf9f5}.side-head{display:flex;align-items:center;justify-content:space-between;padding:0 5px 18px}.side-head h2{font:500 27px Georgia,"Songti SC",serif;margin:0}.count{font-size:11px;font-weight:900;background:var(--mint);color:var(--green);padding:7px 10px;border-radius:99px}
-    .filters{display:flex;gap:5px;padding:4px;background:#eaede8;border-radius:12px;margin-bottom:14px}.filters button{flex:1;border:0;background:transparent;border-radius:9px;padding:8px;cursor:pointer;font-size:12px}.filters .on{background:#fff;color:var(--green);font-weight:900;box-shadow:0 2px 9px #17342c12}
-    .cards{display:grid;gap:7px}.card{width:100%;display:grid;grid-template-columns:34px 1fr 14px;gap:10px;align-items:start;text-align:left;border:1px solid transparent;background:transparent;border-radius:15px;padding:14px 10px;cursor:pointer;transition:.18s}.card:hover,.card.on{background:#fff;border-color:#d8e2dd;box-shadow:0 8px 22px #17342c12;transform:translateX(2px)}
-    .num,.pin{display:grid;place-items:center;border-radius:50%;background:#3c967c;color:#fff;font:bold 12px Arial}.num{width:30px;height:30px}.warn{background:var(--orange)!important}.best{background:#0d684f!important}.info{min-width:0}.title{display:flex;justify-content:space-between;gap:8px;font-weight:900;font-size:14px}.tag{font-size:9px;border-radius:99px;padding:3px 6px;background:#e0f0e9;color:#17664f;white-space:nowrap}.tag.warn{color:#fff}.meta{font-size:10px;color:#7d8c86;margin:6px 0}.rent{color:var(--green);font-size:12px;font-weight:900}.arrow{font-size:20px;color:#9ca6a2}
-    .mapbox{position:relative;min-height:700px;background:#dae6e1}#map{position:absolute;inset:0;z-index:1}.legend{position:absolute;z-index:3;top:16px;left:16px;background:#ffffffed;padding:9px 12px;border-radius:11px;font-size:10px;box-shadow:0 4px 16px #17342c20}.legend span{margin-right:10px}.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:4px}.legend .orange{background:var(--orange)}
-    .map-card{position:absolute;z-index:3;left:20px;bottom:20px;width:min(430px,calc(100% - 40px));padding:20px 22px;background:#fffdf8f2;border-radius:18px;box-shadow:0 16px 50px #17342c33;backdrop-filter:blur(12px)}.map-card-top{display:flex;justify-content:space-between;color:var(--orange);font-size:10px;font-weight:900}.map-card-top a{color:var(--green)}.map-card h3{font:500 27px Georgia,"Songti SC",serif;margin:8px 0 14px}.stats{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);padding:11px 0}.stats b{font-size:12px}.stats small{display:block;color:#82918a;font-size:9px;margin-bottom:4px}.reason{color:#5b6e67;font-size:12px;line-height:1.65;margin:11px 0 0}
-    .pin{width:38px;height:38px;border:3px solid #fff;box-shadow:0 5px 14px #17342c55}.work-pin{width:50px;height:50px;border:3px solid #fff;border-radius:50% 50% 50% 12%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:10px;font-weight:900;transform:rotate(-45deg);box-shadow:0 5px 14px #17342c55}.work-pin span{transform:rotate(45deg)}
-    .section{max-width:1220px;margin:auto;padding:100px 28px}.section h2{font:500 clamp(34px,4vw,50px) Georgia,"Songti SC",serif;margin:0}.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}.notes article{background:var(--paper);padding:32px;min-height:225px}.notes b{color:var(--orange);font:700 11px Arial}.notes h3{font:500 23px Georgia,"Songti SC",serif;margin:34px 0 12px}.notes p{color:#61716b;line-height:1.8;font-size:13px}
-    .risk{background:var(--ink);color:#eef7f3;padding:80px max(25px,calc((100vw - 1160px)/2));display:grid;grid-template-columns:.85fr 1.15fr;gap:80px}.risk h2{font:500 clamp(35px,4.4vw,55px) Georgia,"Songti SC",serif;margin:0;line-height:1.2}.risk p{color:#bfd0ca;line-height:2;margin:0}.risk a{display:inline-block;border:1px solid #617e75;border-radius:99px;padding:8px 11px;margin:20px 6px 0 0;font-size:10px}
-    .tablebox{overflow:auto;border:1px solid var(--line);border-radius:16px;margin-top:40px}table{width:100%;min-width:850px;border-collapse:collapse;background:#fff}th{text-align:left;padding:14px 16px;background:#f0f2ed;color:#76857f;font-size:10px}td{padding:16px;border-top:1px solid #e4e8e3;font-size:12px}td small{display:block;color:#85918c;margin-top:4px}
+    .filters{display:flex;gap:5px;padding:4px;background:#eaede8;border-radius:12px;margin-bottom:14px}.filters button{flex:1;border:0;background:transparent;border-radius:9px;padding:8px;cursor:pointer;font-size:11px}.filters .on{background:#fff;color:var(--green);font-weight:900;box-shadow:0 2px 9px #17342c12}
+    .cards{display:grid;gap:7px}.card{width:100%;display:grid;grid-template-columns:34px 1fr 14px;gap:10px;align-items:start;text-align:left;border:1px solid transparent;background:transparent;border-radius:15px;padding:13px 10px;cursor:pointer;transition:.18s}.card:hover,.card.on{background:#fff;border-color:#d8e2dd;box-shadow:0 8px 22px #17342c12;transform:translateX(2px)}
+    .num,.pin{display:grid;place-items:center;border-radius:50%;background:#3c967c;color:#fff;font:bold 12px Arial}.num{width:30px;height:30px}.warn{background:var(--orange)!important}.best{background:var(--deep)!important}.info{min-width:0}.title{display:flex;justify-content:space-between;gap:8px;font-weight:900;font-size:14px}.tag{font-size:9px;border-radius:99px;padding:3px 6px;background:#e0f0e9;color:#17664f;white-space:nowrap}.tag.warn{color:#fff}.meta{font-size:10px;color:#7d8c86;margin:6px 0}.rent{color:var(--green);font-size:12px;font-weight:900}.features{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}.features i{font-style:normal;font-size:9px;background:#edf2ee;color:#526a61;border-radius:4px;padding:3px 5px}.arrow{font-size:20px;color:#9ca6a2}
+    .mapbox{position:relative;min-height:720px;background:#dae6e1}#map{position:absolute;inset:0;z-index:1}.legend{position:absolute;z-index:3;top:16px;left:16px;background:#ffffffed;padding:9px 12px;border-radius:11px;font-size:10px;box-shadow:0 4px 16px #17342c20}.legend span{margin-right:10px}.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:4px}.legend .orange{background:var(--orange)}.legend .violet{background:var(--violet)}
+    .map-card{position:absolute;z-index:3;left:20px;bottom:20px;width:min(470px,calc(100% - 40px));padding:20px 22px;background:#fffdf8f2;border-radius:18px;box-shadow:0 16px 50px #17342c33;backdrop-filter:blur(12px)}.map-card-top{display:flex;justify-content:space-between;color:var(--orange);font-size:10px;font-weight:900}.map-card-top a{color:var(--green)}.map-card h3{font:500 27px Georgia,"Songti SC",serif;margin:8px 0 14px}.stats{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);padding:11px 0}.stats b{font-size:12px}.stats small{display:block;color:#82918a;font-size:9px;margin-bottom:4px}.reason{color:#5b6e67;font-size:12px;line-height:1.65;margin:11px 0 0}
+    .pin{width:38px;height:38px;border:3px solid #fff;box-shadow:0 5px 14px #17342c55}.special-pin{width:50px;height:50px;border:3px solid #fff;border-radius:50% 50% 50% 12%;color:#fff;display:grid;place-items:center;font-size:10px;font-weight:900;transform:rotate(-45deg);box-shadow:0 5px 14px #17342c55}.special-pin span{transform:rotate(45deg)}.work-pin{background:var(--orange)}.wanda-pin{background:var(--violet)}
+    .section{max-width:1220px;margin:auto;padding:100px 28px}.section h2{font:500 clamp(34px,4vw,50px) Georgia,"Songti SC",serif;margin:0}.notes{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}.notes article{background:var(--paper);padding:29px;min-height:245px}.notes b{color:var(--orange);font:700 11px Arial}.notes h3{font:500 22px Georgia,"Songti SC",serif;margin:30px 0 12px}.notes p{color:#61716b;line-height:1.8;font-size:13px}.notes strong{color:var(--ink)}
+    .risk{background:var(--ink);color:#eef7f3;padding:80px max(25px,calc((100vw - 1160px)/2));display:grid;grid-template-columns:.85fr 1.15fr;gap:80px}.risk h2{font:500 clamp(35px,4.4vw,55px) Georgia,"Songti SC",serif;margin:0;line-height:1.2}.risk p{color:#bfd0ca;line-height:2;margin:0}.risk strong{color:#fff}.risk a{display:inline-block;border:1px solid #617e75;border-radius:99px;padding:8px 11px;margin:20px 6px 0 0;font-size:10px}
+    .tablebox{overflow:auto;border:1px solid var(--line);border-radius:16px;margin-top:40px}table{width:100%;min-width:980px;border-collapse:collapse;background:#fff}th{text-align:left;padding:14px 16px;background:#f0f2ed;color:#76857f;font-size:10px}td{padding:16px;border-top:1px solid #e4e8e3;font-size:12px}td small{display:block;color:#85918c;margin-top:4px}
     details{max-width:1164px;margin:0 auto 80px;border-block:1px solid var(--line);padding:20px 0}summary{font-weight:900;cursor:pointer}details p{font-size:12px;color:#65756f;line-height:1.8}.sources a{display:inline-block;background:#eef1ed;border-radius:99px;padding:7px 9px;margin:4px;font-size:9px}
     footer{border-top:1px solid var(--line);padding:28px clamp(22px,5vw,72px);display:flex;justify-content:space-between;gap:20px;font-size:11px;color:#6e7e78}footer b{color:var(--ink)}
-    @media(max-width:900px){.criteria{display:none}.hero{grid-template-columns:1fr;gap:30px}.workspace{margin:0 14px;grid-template-columns:1fr}.sidebar{order:2}.mapbox{min-height:600px}.notes,.risk{grid-template-columns:1fr}.risk{gap:35px}}
-    @media(max-width:560px){.top{height:62px;padding:0 15px}.nav{border:0;padding:0;font-size:11px}.hero{padding:42px 20px 30px}.hero h1{font-size:45px}.mapbox{min-height:550px}.map-card{left:11px;bottom:11px;width:calc(100% - 22px);padding:16px}.sidebar{padding:22px 11px}.notes{grid-template-columns:1fr}.notes article{min-height:auto}.section{padding-block:72px}footer{flex-direction:column;text-align:center}}
+    @media(max-width:900px){.criteria{display:none}.hero{grid-template-columns:1fr;gap:30px}.workspace{margin:0 14px;grid-template-columns:1fr}.sidebar{order:2}.mapbox{min-height:620px}.notes{grid-template-columns:repeat(2,1fr)}.risk{grid-template-columns:1fr;gap:35px}}
+    @media(max-width:560px){.top{height:62px;padding:0 15px}.nav{border:0;padding:0;font-size:11px}.hero{padding:42px 20px 30px}.hero h1{font-size:44px}.mapbox{min-height:570px}.map-card{left:11px;bottom:11px;width:calc(100% - 22px);padding:16px}.sidebar{padding:22px 11px}.notes{grid-template-columns:1fr}.notes article{min-height:auto}.section{padding-block:72px}footer{flex-direction:column;text-align:center}.legend{right:12px;white-space:nowrap;overflow:auto}}
   </style>
 </head>
 <body>
   <header class="top" id="top">
-    <a class="brand" href="#top"><i>住</i>惠州租房选址</a>
-    <div class="criteria"><b>≤ ¥3,500</b>　·　三房两卫　·　驾车 ≤ 30min　·　避开低洼</div>
+    <a class="brand" href="#top"><i>住</i>大亚湾租房选址</a>
+    <div class="criteria"><b>≤ ¥3,500</b>　·　三房两卫　·　万达商圈　·　山景不看海　·　精装全配</div>
     <a class="nav" href="https://www.amap.com/place/B0L66UCAGP" target="_blank" rel="noreferrer">高德打开工作地 ↗</a>
   </header>
 
   <section class="hero">
-    <div><p class="eyebrow">DAYA BAY · RENTAL SCOUT</p><h1>住得方便，也要<br><em>离积水远一点</em></h1></div>
+    <div><p class="eyebrow">WANDA · MOUNTAIN VIEW · RENTAL SCOUT</p><h1>住在万达旁，<br><em>推窗尽量见山</em></h1></div>
     <div class="hero-copy">
-      <p>以宙邦化工20万吨电池化学品项目为圆心，按预算、户型、通勤、房龄、停车和地势，筛出 6 个值得实地看的小区。</p>
-      <div class="verdict"><small>先看结论</small>龙光玖龙府最均衡；想住新看泷珀；最看重地势可蹲海伦虹。</div>
+      <p>新条件已加入：优先大亚湾万达商圈，只看山景或城市／园林景、排除海景；同时要求装修较好、家具家电齐全、三房两卫和停车方便。</p>
+      <div class="verdict"><small>更新后的看房顺序</small>首看翡翠山·珑悦；再看万达对面的灿邦珑廷；恒大悦龙台地势更高；大爱城是性价比全配备选。</div>
     </div>
   </section>
 
   <section class="workspace">
     <aside class="sidebar">
       <div class="side-head"><h2>候选小区</h2><span class="count" id="count">6 个</span></div>
-      <div class="filters"><button class="on" data-filter="all">全部</button><button data-filter="good">优先看</button><button data-filter="warn">需谨慎</button></div>
+      <div class="filters"><button class="on" data-filter="all">全部</button><button data-filter="wanda">万达优先</button><button data-filter="mountain">山景潜力高</button></div>
       <div class="cards" id="cards"></div>
     </aside>
     <div class="mapbox">
       <div id="map"></div>
-      <div class="legend"><span><i class="orange"></i>工作地</span><span><i></i>优先</span><span><i class="orange"></i>谨慎</span></div>
+      <div class="legend"><span><i class="orange"></i>工作地</span><span><i class="violet"></i>万达</span><span><i></i>候选</span></div>
       <article class="map-card">
-        <div class="map-card-top"><span id="selected-status">当前查看 · 首选</span><a id="amap-link" target="_blank" rel="noreferrer">高德导航 ↗</a></div>
-        <h3 id="selected-name">龙光玖龙府</h3>
-        <div class="stats"><b><small>驾车</small><span id="selected-drive"></span></b><b><small>参考租金</small><span id="selected-rent"></span></b><b><small>估算高程</small><span id="selected-elev"></span></b></div>
+        <div class="map-card-top"><span id="selected-status">当前查看 · 首选</span><a id="amap-link" target="_blank" rel="noreferrer">高德搜索 ↗</a></div>
+        <h3 id="selected-name">翡翠山·珑悦</h3>
+        <div class="stats"><b><small>到工作地</small><span id="selected-drive"></span></b><b><small>距万达</small><span id="selected-wanda"></span></b><b><small>估算高程</small><span id="selected-elev"></span></b></div>
         <p class="reason" id="selected-reason"></p>
       </article>
     </div>
   </section>
 
   <section class="section">
-    <p class="eyebrow">VIEWING NOTES</p><h2>看房时，重点核对这三件事</h2>
+    <p class="eyebrow">UNIT-LEVEL CHECK</p><h2>小区选对后，还要锁定具体房源</h2>
     <div class="notes">
-      <article><b>01</b><h3>先查水，再看装修</h3><p>问物业最近台风期间地库是否进水、车库坡道有没有挡水板和备用泵；最好大雨后再去一次。</p></article>
-      <article><b>02</b><h3>锁定“两卫”</h3><p>平台上的“三房”不一定是两卫。小城故事多数三房为一卫；签约前以房本户型和现场为准。</p></article>
-      <article><b>03</b><h3>车位写进合同</h3><p>确认月租是否含固定车位、管理费和电动车充电；地下车位同时检查入口标高与排水沟。</p></article>
+      <article><b>01 · 景观</b><h3>只收“山景实拍”</h3><p>让中介从客厅和主卧窗边拍<strong>连续视频</strong>，白天确认能看山；明确拒绝“海景、湾景、看海”。不要只凭房源标题。</p></article>
+      <article><b>02 · 朝向</b><h3>用指南针核方向</h3><p>优先朝<strong>西、北或西北</strong>且无遮挡的中高层房源；同一小区不同楼栋景观差异很大，以现场窗外为准。</p></article>
+      <article><b>03 · 装修</b><h3>看维护，不只看照片</h3><p>检查墙角霉斑、柜体受潮、空调异味、床垫和沙发状态。沿海气候潮湿，“精装交付”不等于当前保养好。</p></article>
+      <article><b>04 · 全配</b><h3>家具清单写入合同</h3><p>床和床垫、沙发、餐桌、衣柜、窗帘、冰箱、洗衣机、电视、热水器及<strong>每个房间空调</strong>逐项写入交接单。</p></article>
     </div>
   </section>
 
   <section class="risk">
-    <div><p class="eyebrow">FLOOD CHECK</p><h2>高程只是第一道筛选，不是“不淹”的保证</h2></div>
-    <div><p>大亚湾既有易涝点包括<strong>大亚湾大道—中兴二路</strong>、<strong>龙海三路—龙山三路</strong>等路口；澳头新澳大道与安惠大道环岛也曾进行排水整治。选房还要看小区排水、地库入口和每天的通勤路线。</p>
-      <a href="https://m.huizhou.bendibao.com/news/111448.shtm" target="_blank">易涝点资料 ↗</a>
-      <a href="https://static.nfnews.com/content/202605/19/c12443813.html?enterColumnId=8102" target="_blank">排水整治 ↗</a>
-      <a href="https://open-meteo.com/en/docs/elevation-api" target="_blank">高程口径 ↗</a>
+    <div><p class="eyebrow">FLOOD & TERRAIN</p><h2>靠山不等于不积水，地库仍要单独检查</h2></div>
+    <div><p>区域高程初筛中，恒大悦龙台约 <strong>47m</strong>，翡翠山约 <strong>33m</strong>，灿邦珑廷约 <strong>34m</strong>，优于原先部分低洼候选。但数字高程不能代表地库入口；看房仍要问台风期间进水记录，并在大雨后检查小区门口及通勤道路。</p>
+      <a href="https://m.huizhou.bendibao.com/news/111448.shtm" target="_blank" rel="noreferrer">易涝点资料 ↗</a>
+      <a href="https://open-meteo.com/en/docs/elevation-api" target="_blank" rel="noreferrer">高程口径 ↗</a>
+      <a href="https://www.amap.com/place/B0FFGK1IIO" target="_blank" rel="noreferrer">大亚湾万达 ↗</a>
     </div>
   </section>
 
   <section class="section">
-    <p class="eyebrow">SIDE BY SIDE</p><h2>六个候选，一眼比较</h2>
-    <div class="tablebox"><table><thead><tr><th>小区</th><th>通勤</th><th>房龄</th><th>目标户型</th><th>参考租金</th><th>高程</th><th>判断</th></tr></thead><tbody id="table"></tbody></table></div>
+    <p class="eyebrow">SIDE BY SIDE</p><h2>按新条件重新排序</h2>
+    <div class="tablebox"><table><thead><tr><th>小区</th><th>到工作地</th><th>距万达</th><th>户型／租金</th><th>山景潜力</th><th>装修家具</th><th>高程</th></tr></thead><tbody id="table"></tbody></table></div>
   </section>
 
   <details>
-    <summary>数据口径与房源来源</summary>
-    <p>通勤时间为高德地图非实时驾车估算；租金来自公开挂牌并会随房源变化；高程来自 Open‑Meteo 约90米分辨率数字高程，只用于区域初筛，不代表具体楼栋、道路或地库入口标高。“首选/推荐”是基于当前条件的初筛，不构成房屋安全保证。</p>
+    <summary>数据口径、房源来源与重要提醒</summary>
+    <p>通勤时间是根据高德道路距离的非实时区间估算，早晚高峰可能增加；租金来自近期公开挂牌，会随房源变化。山景、装修和家具属于具体房源属性，网站只标注小区“潜力”和近期挂牌证据，签约前必须以现场和合同交接单为准。高程来自 Open‑Meteo 约90米分辨率数字高程，不代表具体楼栋、道路或地库入口标高。</p>
     <div class="sources" id="sources"></div>
   </details>
-  <footer><b>惠州租房选址地图</b><span>建议顺序：龙光玖龙府 → 新华联新楼栋 → 泷珀 → 海伦虹</span><a href="#top">回到顶部 ↑</a></footer>
+  <footer><b>大亚湾万达租房地图</b><span>建议顺序：翡翠山·珑悦 → 灿邦珑廷 → 恒大悦龙台 → 三远大爱城</span><a href="#top">回到顶部 ↑</a></footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const project={lat:22.766711,lng:114.606199};
+    const wanda={lat:22.755273,lng:114.479920};
     const items=[
-      {id:1,name:"龙光玖龙府",status:"首选",group:"good",lat:22.751192,lng:114.537549,drive:"约18分钟",dist:"11.4km",rent:"¥1,100–2,000",layout:"三房两卫 89–96㎡",year:"2020",elev:16,reason:"通勤、房龄、户型和预算最均衡，三房两卫供应相对明确。",source:"https://huizhou.leyoujia.com/xq/detail/772077.html"},
-      {id:2,name:"新华联广场",status:"推荐",group:"good",lat:22.746568,lng:114.526832,drive:"约21分钟",dist:"13.1km",rent:"¥1,150–1,800",layout:"三房两卫 95–97㎡",year:"2011–2020",elev:10,reason:"商业和日常配套最好，近期三房两卫房源较多；只看较新楼栋。",source:"https://huizhou.leyoujia.com/xq/detail/zf/15620/"},
-      {id:3,name:"泷珀花园",status:"推荐",group:"good",lat:22.713778,lng:114.529096,drive:"约29分钟",dist:"16.0km",rent:"需实时询价",layout:"三房两卫 约106㎡",year:"2023",elev:13,reason:"候选中房龄最新，居住品质和拎包入住概率较高，但公开长租较少。",source:"https://shenzhen.leyoujia.com/xq/detail/846775.html"},
-      {id:4,name:"海伦堡·海伦虹",status:"备选",group:"good",lat:22.739377,lng:114.545405,drive:"约21分钟",dist:"12.3km",rent:"需实时询价",layout:"三房两卫 约115㎡",year:"2018",elev:31,reason:"估算地面高程在候选中最高，通勤也在半小时左右；三房需蹲房源。",source:"https://huizhou.anjuke.com/community/view/871437"},
-      {id:5,name:"碧桂园城市之光",status:"谨慎",group:"warn",lat:22.726355,lng:114.527466,drive:"约25分钟",dist:"14.5km",rent:"¥1,300–1,900",layout:"三房两卫 113–125㎡",year:"2019–2020",elev:4,reason:"户型宽敞、生活方便，但估算地势偏低，必须在暴雨后实地踩点。",source:"https://m.fang.com/xiaoqu/strategy/huizhou/2817162892.html"},
-      {id:6,name:"小城故事花园",status:"谨慎",group:"warn",lat:22.768478,lng:114.644110,drive:"约10分钟",dist:"4.9km",rent:"¥1,000–1,500",layout:"三房多为一卫",year:"2017",elev:3,reason:"离项目最近，但地势估算低且多数三房只有一卫，不完全满足硬条件。",source:"https://huizhou.leyoujia.com/xq/detail/43885.html"}
+      {id:1,name:"翡翠山·珑悦",status:"首选",groups:["wanda","mountain"],lat:22.757952,lng:114.486566,drive:"约28–35分钟",wanda:"约0.8km",rent:"约¥1,600–2,200",layout:"三房两卫 约90–96㎡",year:"2017–2020",elev:33,view:"高：项目依山，需锁定看山楼栋",furnish:"精装、全配房源明确",reason:"万达与益田双商业就在旁边，项目依山，近期有精装三房两卫、家私家电齐全的挂牌；新条件下综合匹配度最高。",source:"https://huizhou.zf.58.com/ssc-67/dayawan/"},
+      {id:2,name:"灿邦珑廷",status:"重点看",groups:["wanda"],lat:22.7540,lng:114.4818,drive:"约30–36分钟",wanda:"约0.3km",rent:"约¥2,000–3,000",layout:"三房两卫 约102–128㎡",year:"2021–2023",elev:34,view:"中：选北／西北向中高层",furnish:"带装修交付；家具需逐套确认",reason:"万达斜对面，位置最贴合商圈，房龄也新；有三房两卫户型。山景与全套家具不能按小区默认，必须筛具体朝向和业主配置。",source:"https://hui.fang.anjuke.com/loupan/463306.html"},
+      {id:3,name:"恒大悦龙台",status:"推荐",groups:["wanda","mountain"],lat:22.753241,lng:114.465031,drive:"约32–40分钟",wanda:"约1.5km",rent:"约¥1,500–2,200",layout:"三房两卫 约94–108㎡",year:"2020–2022",elev:47,view:"较高：区域地势高，选朝山面",furnish:"豪装／精装全配房源明确",reason:"近期仍有三房两卫、精装修、家电齐全挂牌，估算高程在新候选中最高；到工作地略超过理想30分钟，但仍远低于1小时上限。",source:"https://hui.zu.anjuke.com/haozhuang-zufang/dayawanqua/"},
+      {id:4,name:"三远大爱城",status:"性价比",groups:["wanda"],lat:22.754852,lng:114.495994,drive:"约26–33分钟",wanda:"约1.7km",rent:"约¥1,600–2,200",layout:"三房两卫 约89–100㎡",year:"2017–2020",elev:23,view:"中：排除朝海／楼景遮挡户型",furnish:"精装、家私电器齐全房源明确",reason:"近期有三房两卫、家私电器齐全约1600元的挂牌，生活便利且更靠近工作地方向；适合作为预算友好的全配备选。",source:"https://www.fang.com/houses/zf_49611huizhou/g23/"},
+      {id:5,name:"新华联广场",status:"通勤备选",groups:[],lat:22.746568,lng:114.526832,drive:"约21分钟",wanda:"约5km",rent:"约¥1,400–1,800",layout:"三房两卫 约94–97㎡",year:"2020新楼栋",elev:10,view:"低至中：以城市／园林景为主",furnish:"精装拎包入住房源多",reason:"不在万达核心步行圈，但通勤更短、全配房源多。只有找到明确山景实拍且你愿意牺牲万达距离时再考虑。",source:"https://huizhou.leyoujia.com/xq/detail/zf/15620/"},
+      {id:6,name:"龙光玖龙府",status:"通勤备选",groups:[],lat:22.751192,lng:114.537549,drive:"约18分钟",wanda:"约6km",rent:"约¥1,100–2,000",layout:"三房两卫 约89–96㎡",year:"2020",elev:16,view:"低：更偏城市景，需碰具体房源",furnish:"精装带家私家电房源明确",reason:"通勤仍是最稳妥的一档，但已不符合“最好在万达商圈”的新偏好；仅作为找不到合适山景全配房时的保底。",source:"https://huizhou.leyoujia.com/xq/detail/772077.html"}
     ];
-    const map=L.map("map",{zoomControl:false}).setView([22.748,114.574],12);
+    const map=L.map("map",{zoomControl:false}).setView([22.755,114.525],12);
     L.control.zoom({position:"bottomright"}).addTo(map);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(map);
-    const workIcon=L.divIcon({className:"",html:'<div class="work-pin"><span>工作</span></div>',iconSize:[50,50],iconAnchor:[25,25]});
-    L.marker([project.lat,project.lng],{icon:workIcon}).addTo(map).bindPopup("<b>宙邦化工项目</b><br>滨海十路1号");
+    const special=(type,label)=>L.divIcon({className:"",html:`<div class="special-pin ${type}"><span>${label}</span></div>`,iconSize:[50,50],iconAnchor:[25,25]});
+    L.marker([project.lat,project.lng],{icon:special("work-pin","工作")}).addTo(map).bindPopup("<b>宙邦化工项目</b><br>滨海十路1号");
+    L.marker([wanda.lat,wanda.lng],{icon:special("wanda-pin","万达")}).addTo(map).bindPopup("<b>惠州大亚湾万达广场</b><br>龙海二路38号");
     const markers={};
     items.forEach(x=>{
-      const icon=L.divIcon({className:"",html:`<div class="pin ${x.group==="warn"?"warn":x.id===1?"best":""}">${x.id}</div>`,iconSize:[38,38],iconAnchor:[19,19]});
-      markers[x.id]=L.marker([x.lat,x.lng],{icon}).addTo(map).bindPopup(`<b>${x.name}</b><br>${x.drive} · ${x.rent}<br>估算高程 ${x.elev}m`).on("click",()=>select(x.id,true));
-      L.polyline([[x.lat,x.lng],[project.lat,project.lng]],{color:x.group==="warn"?"#d86d36":"#17755c",weight:1.5,opacity:.34,dashArray:"5 7"}).addTo(map);
+      const icon=L.divIcon({className:"",html:`<div class="pin ${x.id===1?"best":x.id>4?"warn":""}">${x.id}</div>`,iconSize:[38,38],iconAnchor:[19,19]});
+      markers[x.id]=L.marker([x.lat,x.lng],{icon}).addTo(map).bindPopup(`<b>${x.name}</b><br>${x.drive} · ${x.rent}<br>距万达 ${x.wanda} · 高程约${x.elev}m`).on("click",()=>select(x.id,true));
+      L.polyline([[x.lat,x.lng],[project.lat,project.lng]],{color:x.id>4?"#d86d36":"#17755c",weight:1.4,opacity:.28,dashArray:"5 7"}).addTo(map);
     });
     const cards=document.querySelector("#cards"),table=document.querySelector("#table"),sources=document.querySelector("#sources");
+    let active=1;
     function render(filter="all"){
-      const visible=items.filter(x=>filter==="all"||x.group===filter);
+      const visible=items.filter(x=>filter==="all"||x.groups.includes(filter));
       document.querySelector("#count").textContent=`${visible.length} 个`;
-      cards.innerHTML=visible.map(x=>`<button class="card ${x.id===active?"on":""}" data-id="${x.id}"><span class="num ${x.group==="warn"?"warn":x.id===1?"best":""}">${x.id}</span><span class="info"><span class="title">${x.name}<b class="tag ${x.group==="warn"?"warn":""}">${x.status}</b></span><span class="meta">${x.drive} · ${x.dist} · 高程约 ${x.elev}m</span><span class="rent">${x.rent} / 月</span></span><span class="arrow">›</span></button>`).join("");
+      cards.innerHTML=visible.map(x=>`<button class="card ${x.id===active?"on":""}" data-id="${x.id}"><span class="num ${x.id===1?"best":x.id>4?"warn":""}">${x.id}</span><span class="info"><span class="title">${x.name}<b class="tag ${x.id>4?"warn":""}">${x.status}</b></span><span class="meta">${x.drive} · 距万达${x.wanda} · 高程${x.elev}m</span><span class="rent">${x.rent} / 月</span><span class="features"><i>${x.groups.includes("mountain")?"山景优先":"景观需筛"}</i><i>精装</i><i>家具核验</i></span></span><span class="arrow">›</span></button>`).join("");
       cards.querySelectorAll(".card").forEach(el=>el.onclick=()=>select(Number(el.dataset.id),true));
     }
-    let active=1;
     function select(id,fly=false){
       active=id;const x=items.find(i=>i.id===id);
       document.querySelector("#selected-status").textContent=`当前查看 · ${x.status}`;
       document.querySelector("#selected-name").textContent=x.name;
       document.querySelector("#selected-drive").textContent=x.drive;
-      document.querySelector("#selected-rent").textContent=x.rent;
-      document.querySelector("#selected-elev").textContent=x.elev+" m";
+      document.querySelector("#selected-wanda").textContent=x.wanda;
+      document.querySelector("#selected-elev").textContent=x.elev+"m";
       document.querySelector("#selected-reason").textContent=x.reason;
-      document.querySelector("#amap-link").href=`https://www.amap.com/search?query=${encodeURIComponent(x.name+" 惠州")}`;
+      document.querySelector("#amap-link").href=`https://www.amap.com/search?query=${encodeURIComponent(x.name+" 惠州大亚湾")}`;
       document.querySelectorAll(".card").forEach(el=>el.classList.toggle("on",Number(el.dataset.id)===id));
       if(fly){map.flyTo([x.lat,x.lng],14,{duration:.8});markers[id].openPopup()}
     }
     document.querySelectorAll(".filters button").forEach(btn=>btn.onclick=()=>{
       document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("on"));btn.classList.add("on");render(btn.dataset.filter);
     });
-    table.innerHTML=items.map(x=>`<tr><td><b>${x.name}</b></td><td>${x.drive}<small>${x.dist}</small></td><td>${x.year}</td><td>${x.layout}</td><td>${x.rent}</td><td>${x.elev}m</td><td>${x.status}</td></tr>`).join("");
-    sources.innerHTML=items.map(x=>`<a href="${x.source}" target="_blank">${x.name}房源参考 ↗</a>`).join("");
+    table.innerHTML=items.map(x=>`<tr><td><b>${x.name}</b><small>${x.year}</small></td><td>${x.drive}</td><td>${x.wanda}</td><td>${x.layout}<small>${x.rent}</small></td><td>${x.view}</td><td>${x.furnish}</td><td>${x.elev}m</td></tr>`).join("");
+    sources.innerHTML=items.map(x=>`<a href="${x.source}" target="_blank" rel="noreferrer">${x.name}房源参考 ↗</a>`).join("");
     render();select(1);
   </script>
 </body>

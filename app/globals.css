@@ -44,17 +44,18 @@ h1 em { color:var(--green); font-style:normal; }
 .leaflet-tile-pane { filter:saturate(.72) sepia(.05) brightness(1.04); }
 .project-marker,.candidate-marker { display:grid;place-items:center;color:white;box-shadow:0 5px 14px rgba(8,47,36,.26);border:3px solid white; }
 .project-marker { width:52px;height:52px;background:var(--orange);border-radius:50% 50% 50% 12%;transform:rotate(-45deg); }
+.project-marker.wanda-marker { background:#6657a8; }
 .project-marker span { transform:rotate(45deg);font-size:11px;font-weight:900; }
 .candidate-marker { width:38px;height:38px;border-radius:50%;font:bold 13px Arial; }
 .legend { position:absolute; z-index:4; top:18px; left:18px; display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.94);padding:10px 13px;border-radius:12px;box-shadow:0 4px 16px rgba(25,50,43,.12);font-size:11px; }
-.legend span { display:flex;align-items:center;gap:5px; }.legend small { color:#78857f;border-left:1px solid #ddd;padding-left:12px; }.dot { width:9px;height:9px;border-radius:50%;background:#3c967c; }.dot.project,.dot.caution { background:var(--orange); }.dot.best { background:#17755c; }
+.legend span { display:flex;align-items:center;gap:5px; }.legend small { color:#78857f;border-left:1px solid #ddd;padding-left:12px; }.dot { width:9px;height:9px;border-radius:50%;background:#3c967c; }.dot.project,.dot.caution { background:var(--orange); }.dot.wanda { background:#6657a8; }.dot.best { background:#17755c; }
 .map-card { position:absolute; z-index:4; left:22px; bottom:22px; width:min(430px,calc(100% - 44px)); background:rgba(255,253,248,.96);border:1px solid white;border-radius:18px;padding:20px 22px;box-shadow:0 16px 50px rgba(14,47,38,.2);backdrop-filter:blur(12px); }
 .map-card-top { display:flex;justify-content:space-between;color:var(--orange);font-size:11px;font-weight:800;letter-spacing:.06em; }.map-card-top a { color:var(--green); }
 .map-card h3 { font:500 27px Georgia,"Songti SC",serif;margin:8px 0 14px; }.map-stats { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-block:1px solid #dfe3de;padding:12px 0; }
 .map-stats span { font-weight:800;font-size:13px; }.map-stats small { display:block;color:#819089;font-size:9px;font-weight:500;margin-bottom:4px; }
 .map-card p { color:#566a62;font-size:12px;line-height:1.6;margin:12px 0 0; }
 .detail-section,.comparison { max-width:1280px;margin:0 auto;padding:110px 28px; }.section-title h2 { font:500 clamp(35px,4vw,52px) Georgia,"Songti SC",serif;margin:0;letter-spacing:-.03em; }
-.notes-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px; }
+.notes-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px; }
 .notes-grid article { background:var(--paper);padding:34px;min-height:240px; }.notes-grid span { color:var(--orange);font:700 12px Arial; }.notes-grid h3 { font:500 24px Georgia,"Songti SC",serif;margin:38px 0 14px; }.notes-grid p { color:#61716b;line-height:1.8;font-size:14px;margin:0; }
 .risk-section { background:var(--ink);color:#edf5f1;padding:90px max(28px,calc((100vw - 1224px)/2));display:grid;grid-template-columns:.9fr 1.1fr;gap:90px; }
 .eyebrow.light { color:#8ac5b4; }.risk-section h2 { font:500 clamp(36px,4.4vw,58px) Georgia,"Songti SC",serif;line-height:1.2;margin:0; }
@@ -68,7 +69,7 @@ td { padding:18px;border-top:1px solid #e5e8e4;font-size:13px; } td strong,td sm
 footer { min-height:100px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px clamp(22px,5vw,80px);font-size:12px; }footer span { font-weight:900; }footer p { color:#718079; }footer a { color:var(--green);font-weight:800; }
 @media (max-width:900px) {
   .criteria { display:none; }.hero { grid-template-columns:1fr;gap:32px;padding-top:48px; }.workspace { margin:0 14px;grid-template-columns:1fr;border-radius:18px; }.list-panel { order:2; }.map-shell { min-height:620px; }.legend { right:12px;left:12px;overflow:auto; }.legend small { display:none; }
-  .notes-grid,.risk-section { grid-template-columns:1fr; }.risk-section { gap:38px; }.detail-section,.comparison { padding-block:78px; }
+  .notes-grid { grid-template-columns:repeat(2,1fr); }.risk-section { grid-template-columns:1fr;gap:38px; }.detail-section,.comparison { padding-block:78px; }
 }
 @media (max-width:560px) {
   .topbar { height:64px;padding:0 16px; }.project-link { font-size:0;border:0;padding:0; }.project-link:after { content:"高德 ↗";font-size:12px; }.hero { padding:42px 20px 32px; }.hero h1 { font-size:46px; }
