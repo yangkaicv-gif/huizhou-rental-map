@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="大亚湾万达商圈山景三房租房地图：精装修、家具齐全、通勤宙邦化工项目。">
-  <meta property="og:title" content="大亚湾万达租房地图">
+  <meta name="description" content="大亚湾山景三房租房地图：精装修、家具齐全、通勤宙邦化工项目，并兼顾防涝。">
+  <meta property="og:title" content="大亚湾山景租房地图">
   <meta property="og:description" content="山景·精装·全配，兼顾宙邦化工项目通勤与防涝。">
   <meta property="og:image" content="https://yangkaicv-gif.github.io/huizhou-rental-map/og.png">
-  <title>大亚湾万达租房地图｜山景·精装·全配</title>
+  <title>大亚湾山景租房地图｜精装·全配·通勤</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
     :root{--ink:#17342c;--green:#17755c;--deep:#0d5542;--mint:#dceee6;--paper:#fffdf8;--cream:#f4f0e7;--orange:#d86d36;--violet:#6657a8;--line:#d9ded7}
@@ -25,7 +25,7 @@
     .num,.pin{display:grid;place-items:center;border-radius:50%;background:#3c967c;color:#fff;font:bold 12px Arial}.num{width:30px;height:30px}.warn{background:var(--orange)!important}.best{background:var(--deep)!important}.info{min-width:0}.title{display:flex;justify-content:space-between;gap:8px;font-weight:900;font-size:14px}.tag{font-size:9px;border-radius:99px;padding:3px 6px;background:#e0f0e9;color:#17664f;white-space:nowrap}.tag.warn{color:#fff}.meta{font-size:10px;color:#7d8c86;margin:6px 0}.rent{color:var(--green);font-size:12px;font-weight:900}.features{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}.features i{font-style:normal;font-size:9px;background:#edf2ee;color:#526a61;border-radius:4px;padding:3px 5px}.arrow{font-size:20px;color:#9ca6a2}
     .mapbox{position:relative;min-height:720px;background:#dae6e1}#map{position:absolute;inset:0;z-index:1}.legend{position:absolute;z-index:3;top:16px;left:16px;background:#ffffffed;padding:9px 12px;border-radius:11px;font-size:10px;box-shadow:0 4px 16px #17342c20}.legend span{margin-right:10px}.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:4px}.legend .orange{background:var(--orange)}.legend .violet{background:var(--violet)}
     .map-card{position:absolute;z-index:3;left:20px;bottom:20px;width:min(470px,calc(100% - 40px));padding:20px 22px;background:#fffdf8f2;border-radius:18px;box-shadow:0 16px 50px #17342c33;backdrop-filter:blur(12px)}.map-card-top{display:flex;justify-content:space-between;color:var(--orange);font-size:10px;font-weight:900}.map-card-top a{color:var(--green)}.map-card h3{font:500 27px Georgia,"Songti SC",serif;margin:8px 0 14px}.stats{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);padding:11px 0}.stats b{font-size:12px}.stats small{display:block;color:#82918a;font-size:9px;margin-bottom:4px}.reason{color:#5b6e67;font-size:12px;line-height:1.65;margin:11px 0 0}
-    .pin{width:38px;height:38px;border:3px solid #fff;box-shadow:0 5px 14px #17342c55}.special-pin{width:50px;height:50px;border:3px solid #fff;border-radius:50% 50% 50% 12%;color:#fff;display:grid;place-items:center;font-size:10px;font-weight:900;transform:rotate(-45deg);box-shadow:0 5px 14px #17342c55}.special-pin span{transform:rotate(45deg)}.work-pin{background:var(--orange)}.wanda-pin{background:var(--violet)}
+    .pin{width:38px;height:38px;border:3px solid #fff;box-shadow:0 5px 14px #17342c55}.special-pin{width:50px;height:50px;border:3px solid #fff;border-radius:50% 50% 50% 12%;color:#fff;display:grid;place-items:center;font-size:10px;font-weight:900;transform:rotate(-45deg);box-shadow:0 5px 14px #17342c55}.special-pin span{transform:rotate(45deg)}.work-pin{background:var(--orange)}
     .section{max-width:1220px;margin:auto;padding:100px 28px}.section h2{font:500 clamp(34px,4vw,50px) Georgia,"Songti SC",serif;margin:0}.notes{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}.notes article{background:var(--paper);padding:29px;min-height:245px}.notes b{color:var(--orange);font:700 11px Arial}.notes h3{font:500 22px Georgia,"Songti SC",serif;margin:30px 0 12px}.notes p{color:#61716b;line-height:1.8;font-size:13px}.notes strong{color:var(--ink)}
     .risk{background:var(--ink);color:#eef7f3;padding:80px max(25px,calc((100vw - 1160px)/2));display:grid;grid-template-columns:.85fr 1.15fr;gap:80px}.risk h2{font:500 clamp(35px,4.4vw,55px) Georgia,"Songti SC",serif;margin:0;line-height:1.2}.risk p{color:#bfd0ca;line-height:2;margin:0}.risk strong{color:#fff}.risk a{display:inline-block;border:1px solid #617e75;border-radius:99px;padding:8px 11px;margin:20px 6px 0 0;font-size:10px}
     .tablebox{overflow:auto;border:1px solid var(--line);border-radius:16px;margin-top:40px}table{width:100%;min-width:980px;border-collapse:collapse;background:#fff}th{text-align:left;padding:14px 16px;background:#f0f2ed;color:#76857f;font-size:10px}td{padding:16px;border-top:1px solid #e4e8e3;font-size:12px}td small{display:block;color:#85918c;margin-top:4px}
@@ -38,31 +38,31 @@
 <body>
   <header class="top" id="top">
     <a class="brand" href="#top"><i>住</i>大亚湾租房选址</a>
-    <div class="criteria"><b>≤ ¥3,500</b>　·　三房两卫　·　万达商圈　·　山景不看海　·　精装全配</div>
+    <div class="criteria"><b>≤ ¥3,500</b>　·　至少三房两卫　·　山景不看海　·　精装全配　·　通勤≤1小时</div>
     <a class="nav" href="https://www.amap.com/place/B0L66UCAGP" target="_blank" rel="noreferrer">高德打开工作地 ↗</a>
   </header>
 
   <section class="hero">
-    <div><p class="eyebrow">WANDA · MOUNTAIN VIEW · RENTAL SCOUT</p><h1>住在万达旁，<br><em>推窗尽量见山</em></h1></div>
+    <div><p class="eyebrow">MOUNTAIN VIEW · COMMUTE · RENTAL SCOUT</p><h1>不再限定商圈，<br><em>只找合适的山景房</em></h1></div>
     <div class="hero-copy">
-      <p>新条件已加入：优先大亚湾万达商圈，只看山景或城市／园林景、排除海景；同时要求装修较好、家具家电齐全、三房两卫和停车方便。</p>
-      <div class="verdict"><small>更新后的看房顺序</small>首看翡翠山·珑悦；再看万达对面的灿邦珑廷；恒大悦龙台地势更高；大爱城是性价比全配备选。</div>
+      <p>已放开商圈限制。现在按山景、到宙邦项目通勤、装修家具与防涝重新筛选；仍坚持整租、至少三房两卫、停车方便，并控制在每月3,500元以内。</p>
+      <div class="verdict"><small>新的看房顺序</small>山景综合首看翡翠山；通勤首看龙光玖龙府；海伦虹兼顾两者；恒大悦龙台地势更高。</div>
     </div>
   </section>
 
   <section class="workspace">
     <aside class="sidebar">
       <div class="side-head"><h2>候选小区</h2><span class="count" id="count">6 个</span></div>
-      <div class="filters"><button class="on" data-filter="all">全部</button><button data-filter="wanda">万达优先</button><button data-filter="mountain">山景潜力高</button></div>
+      <div class="filters"><button class="on" data-filter="all">全部</button><button data-filter="mountain">山景优先</button><button data-filter="commute">通勤优先</button></div>
       <div class="cards" id="cards"></div>
     </aside>
     <div class="mapbox">
       <div id="map"></div>
-      <div class="legend"><span><i class="orange"></i>工作地</span><span><i class="violet"></i>万达</span><span><i></i>候选</span></div>
+      <div class="legend"><span><i class="orange"></i>工作地</span><span><i></i>候选</span></div>
       <article class="map-card">
         <div class="map-card-top"><span id="selected-status">当前查看 · 首选</span><a id="amap-link" target="_blank" rel="noreferrer">高德搜索 ↗</a></div>
         <h3 id="selected-name">翡翠山·珑悦</h3>
-        <div class="stats"><b><small>到工作地</small><span id="selected-drive"></span></b><b><small>距万达</small><span id="selected-wanda"></span></b><b><small>估算高程</small><span id="selected-elev"></span></b></div>
+        <div class="stats"><b><small>到工作地</small><span id="selected-drive"></span></b><b><small>参考租金</small><span id="selected-rent"></span></b><b><small>估算高程</small><span id="selected-elev"></span></b></div>
         <p class="reason" id="selected-reason"></p>
       </article>
     </div>
@@ -80,16 +80,15 @@
 
   <section class="risk">
     <div><p class="eyebrow">FLOOD & TERRAIN</p><h2>靠山不等于不积水，地库仍要单独检查</h2></div>
-    <div><p>区域高程初筛中，恒大悦龙台约 <strong>47m</strong>，翡翠山约 <strong>33m</strong>，灿邦珑廷约 <strong>34m</strong>，优于原先部分低洼候选。但数字高程不能代表地库入口；看房仍要问台风期间进水记录，并在大雨后检查小区门口及通勤道路。</p>
+    <div><p>区域高程初筛中，恒大悦龙台约 <strong>47m</strong>，翡翠山约 <strong>33m</strong>，海伦虹约 <strong>31m</strong>，防涝初筛更占优。但数字高程不能代表地库入口；看房仍要问台风期间进水记录，并在大雨后检查小区门口及通勤道路。</p>
       <a href="https://m.huizhou.bendibao.com/news/111448.shtm" target="_blank" rel="noreferrer">易涝点资料 ↗</a>
       <a href="https://open-meteo.com/en/docs/elevation-api" target="_blank" rel="noreferrer">高程口径 ↗</a>
-      <a href="https://www.amap.com/place/B0FFGK1IIO" target="_blank" rel="noreferrer">大亚湾万达 ↗</a>
     </div>
   </section>
 
   <section class="section">
     <p class="eyebrow">SIDE BY SIDE</p><h2>按新条件重新排序</h2>
-    <div class="tablebox"><table><thead><tr><th>小区</th><th>到工作地</th><th>距万达</th><th>户型／租金</th><th>山景潜力</th><th>装修家具</th><th>高程</th></tr></thead><tbody id="table"></tbody></table></div>
+    <div class="tablebox"><table><thead><tr><th>小区</th><th>到工作地</th><th>参考距离</th><th>户型／租金</th><th>山景潜力</th><th>装修家具</th><th>高程</th></tr></thead><tbody id="table"></tbody></table></div>
   </section>
 
   <details>
@@ -97,30 +96,28 @@
     <p>通勤时间是根据高德道路距离的非实时区间估算，早晚高峰可能增加；租金来自近期公开挂牌，会随房源变化。山景、装修和家具属于具体房源属性，网站只标注小区“潜力”和近期挂牌证据，签约前必须以现场和合同交接单为准。高程来自 Open‑Meteo 约90米分辨率数字高程，不代表具体楼栋、道路或地库入口标高。</p>
     <div class="sources" id="sources"></div>
   </details>
-  <footer><b>大亚湾万达租房地图</b><span>建议顺序：翡翠山·珑悦 → 灿邦珑廷 → 恒大悦龙台 → 三远大爱城</span><a href="#top">回到顶部 ↑</a></footer>
+  <footer><b>大亚湾山景租房地图</b><span>建议顺序：翡翠山·珑悦 → 龙光玖龙府 → 海伦虹 → 恒大悦龙台</span><a href="#top">回到顶部 ↑</a></footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const project={lat:22.766711,lng:114.606199};
-    const wanda={lat:22.755273,lng:114.479920};
     const items=[
-      {id:1,name:"翡翠山·珑悦",status:"首选",groups:["wanda","mountain"],lat:22.757952,lng:114.486566,drive:"约28–35分钟",wanda:"约0.8km",rent:"约¥1,600–2,200",layout:"三房两卫 约90–96㎡",year:"2017–2020",elev:33,view:"高：项目依山，需锁定看山楼栋",furnish:"精装、全配房源明确",reason:"万达与益田双商业就在旁边，项目依山，近期有精装三房两卫、家私家电齐全的挂牌；新条件下综合匹配度最高。",source:"https://huizhou.zf.58.com/ssc-67/dayawan/"},
-      {id:2,name:"灿邦珑廷",status:"重点看",groups:["wanda"],lat:22.7540,lng:114.4818,drive:"约30–36分钟",wanda:"约0.3km",rent:"约¥2,000–3,000",layout:"三房两卫 约102–128㎡",year:"2021–2023",elev:34,view:"中：选北／西北向中高层",furnish:"带装修交付；家具需逐套确认",reason:"万达斜对面，位置最贴合商圈，房龄也新；有三房两卫户型。山景与全套家具不能按小区默认，必须筛具体朝向和业主配置。",source:"https://hui.fang.anjuke.com/loupan/463306.html"},
-      {id:3,name:"恒大悦龙台",status:"推荐",groups:["wanda","mountain"],lat:22.753241,lng:114.465031,drive:"约32–40分钟",wanda:"约1.5km",rent:"约¥1,500–2,200",layout:"三房两卫 约94–108㎡",year:"2020–2022",elev:47,view:"较高：区域地势高，选朝山面",furnish:"豪装／精装全配房源明确",reason:"近期仍有三房两卫、精装修、家电齐全挂牌，估算高程在新候选中最高；到工作地略超过理想30分钟，但仍远低于1小时上限。",source:"https://hui.zu.anjuke.com/haozhuang-zufang/dayawanqua/"},
-      {id:4,name:"三远大爱城",status:"性价比",groups:["wanda"],lat:22.754852,lng:114.495994,drive:"约26–33分钟",wanda:"约1.7km",rent:"约¥1,600–2,200",layout:"三房两卫 约89–100㎡",year:"2017–2020",elev:23,view:"中：排除朝海／楼景遮挡户型",furnish:"精装、家私电器齐全房源明确",reason:"近期有三房两卫、家私电器齐全约1600元的挂牌，生活便利且更靠近工作地方向；适合作为预算友好的全配备选。",source:"https://www.fang.com/houses/zf_49611huizhou/g23/"},
-      {id:5,name:"新华联广场",status:"通勤备选",groups:[],lat:22.746568,lng:114.526832,drive:"约21分钟",wanda:"约5km",rent:"约¥1,400–1,800",layout:"三房两卫 约94–97㎡",year:"2020新楼栋",elev:10,view:"低至中：以城市／园林景为主",furnish:"精装拎包入住房源多",reason:"不在万达核心步行圈，但通勤更短、全配房源多。只有找到明确山景实拍且你愿意牺牲万达距离时再考虑。",source:"https://huizhou.leyoujia.com/xq/detail/zf/15620/"},
-      {id:6,name:"龙光玖龙府",status:"通勤备选",groups:[],lat:22.751192,lng:114.537549,drive:"约18分钟",wanda:"约6km",rent:"约¥1,100–2,000",layout:"三房两卫 约89–96㎡",year:"2020",elev:16,view:"低：更偏城市景，需碰具体房源",furnish:"精装带家私家电房源明确",reason:"通勤仍是最稳妥的一档，但已不符合“最好在万达商圈”的新偏好；仅作为找不到合适山景全配房时的保底。",source:"https://huizhou.leyoujia.com/xq/detail/772077.html"}
+      {id:1,name:"翡翠山·珑悦",status:"首选",groups:["mountain"],lat:22.757952,lng:114.486566,drive:"约28–35分钟",distance:"约18km",rent:"约¥1,600–2,200",layout:"三房两卫 约90–96㎡",year:"2017–2020",elev:33,view:"高：项目依山，需锁定看山楼栋",furnish:"精装、全配房源明确",reason:"项目依山，近期能找到精装三房两卫、家私家电齐全的挂牌；山景、生活便利和预算三项最均衡。",source:"https://huizhou.zf.58.com/ssc-67/dayawan/"},
+      {id:2,name:"龙光玖龙府",status:"通勤首选",groups:["commute"],lat:22.751192,lng:114.537549,drive:"约18–25分钟",distance:"约11.4km",rent:"约¥1,100–2,000",layout:"三房两卫 约89–96㎡",year:"2020",elev:16,view:"中低：山景需逐套碰房源",furnish:"精装带家私家电房源明确",reason:"通勤最短，三房两卫与全配房源也比较好找；不再受商圈限制后，它是最实用的工作日方案。",source:"https://huizhou.leyoujia.com/xq/detail/772077.html"},
+      {id:3,name:"海伦堡·海伦虹",status:"均衡推荐",groups:["mountain","commute"],lat:22.739377,lng:114.545405,drive:"约20–28分钟",distance:"约12.3km",rent:"约¥1,600–2,500",layout:"三房两卫约100㎡（房源需等）",year:"2021前后",elev:31,view:"较高：锁定中高层山向房",furnish:"精装，全配逐套确认",reason:"通勤、估算高程和靠山环境比较均衡，适合盯三房两卫的中高层山向房；近期三房供应需等待。",source:"https://huizhou.anjuke.com/community/view/871437"},
+      {id:4,name:"恒大悦龙台",status:"地势优先",groups:["mountain"],lat:22.753241,lng:114.465031,drive:"约32–40分钟",distance:"约21km",rent:"约¥1,500–2,200",layout:"三房两卫 约94–108㎡",year:"2020–2022",elev:47,view:"较高：区域地势高，选朝山面",furnish:"豪装／精装全配房源明确",reason:"三房两卫、精装修、家电齐全挂牌较明确，估算高程在候选中最高；通勤略超理想30分钟。",source:"https://m.fang.com/zf/huizhou_xm2817163584/"},
+      {id:5,name:"泷珀花园",status:"新房备选",groups:["mountain"],lat:22.713778,lng:114.529096,drive:"约27–35分钟",distance:"约16km",rent:"约¥2,300–3,300",layout:"三房两卫 约106㎡",year:"2023",elev:13,view:"中：近山，朝向决定实景",furnish:"新房精装，家具需逐套确认",reason:"房龄最新、户型和装修条件强；长租挂牌较少，高程也不高，只看完整家具、明确山景的房源。",source:"https://mobile.anjuke.com/esf/huizhou-cm1379188/"},
+      {id:6,name:"碧桂园城央印象",status:"品质备选",groups:["commute"],lat:22.7505,lng:114.5000,drive:"约25–33分钟",distance:"约16km",rent:"约¥2,700–3,200",layout:"四房两卫（满足≥三房）",year:"2021前后",elev:16,view:"中：山景不稳定，需逐套筛",furnish:"精装、品牌家具家电挂牌明确",reason:"四房两卫、装修与家具配置更强，仍在3500元预算内；地图点位为小区近似中心，签约前需实地核验。",source:"https://www.fang.com/houses/zf_49744huizhou/g24/"}
     ];
-    const map=L.map("map",{zoomControl:false}).setView([22.755,114.525],12);
+    const map=L.map("map",{zoomControl:false}).setView([22.748,114.535],12);
     L.control.zoom({position:"bottomright"}).addTo(map);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(map);
     const special=(type,label)=>L.divIcon({className:"",html:`<div class="special-pin ${type}"><span>${label}</span></div>`,iconSize:[50,50],iconAnchor:[25,25]});
     L.marker([project.lat,project.lng],{icon:special("work-pin","工作")}).addTo(map).bindPopup("<b>宙邦化工项目</b><br>滨海十路1号");
-    L.marker([wanda.lat,wanda.lng],{icon:special("wanda-pin","万达")}).addTo(map).bindPopup("<b>惠州大亚湾万达广场</b><br>龙海二路38号");
     const markers={};
     items.forEach(x=>{
       const icon=L.divIcon({className:"",html:`<div class="pin ${x.id===1?"best":x.id>4?"warn":""}">${x.id}</div>`,iconSize:[38,38],iconAnchor:[19,19]});
-      markers[x.id]=L.marker([x.lat,x.lng],{icon}).addTo(map).bindPopup(`<b>${x.name}</b><br>${x.drive} · ${x.rent}<br>距万达 ${x.wanda} · 高程约${x.elev}m`).on("click",()=>select(x.id,true));
+      markers[x.id]=L.marker([x.lat,x.lng],{icon}).addTo(map).bindPopup(`<b>${x.name}</b><br>${x.drive} · ${x.rent}<br>${x.distance} · 高程约${x.elev}m`).on("click",()=>select(x.id,true));
       L.polyline([[x.lat,x.lng],[project.lat,project.lng]],{color:x.id>4?"#d86d36":"#17755c",weight:1.4,opacity:.28,dashArray:"5 7"}).addTo(map);
     });
     const cards=document.querySelector("#cards"),table=document.querySelector("#table"),sources=document.querySelector("#sources");
@@ -128,7 +125,7 @@
     function render(filter="all"){
       const visible=items.filter(x=>filter==="all"||x.groups.includes(filter));
       document.querySelector("#count").textContent=`${visible.length} 个`;
-      cards.innerHTML=visible.map(x=>`<button class="card ${x.id===active?"on":""}" data-id="${x.id}"><span class="num ${x.id===1?"best":x.id>4?"warn":""}">${x.id}</span><span class="info"><span class="title">${x.name}<b class="tag ${x.id>4?"warn":""}">${x.status}</b></span><span class="meta">${x.drive} · 距万达${x.wanda} · 高程${x.elev}m</span><span class="rent">${x.rent} / 月</span><span class="features"><i>${x.groups.includes("mountain")?"山景优先":"景观需筛"}</i><i>精装</i><i>家具核验</i></span></span><span class="arrow">›</span></button>`).join("");
+      cards.innerHTML=visible.map(x=>`<button class="card ${x.id===active?"on":""}" data-id="${x.id}"><span class="num ${x.id===1?"best":x.id>4?"warn":""}">${x.id}</span><span class="info"><span class="title">${x.name}<b class="tag ${x.id>4?"warn":""}">${x.status}</b></span><span class="meta">${x.drive} · ${x.distance} · 高程${x.elev}m</span><span class="rent">${x.rent} / 月</span><span class="features"><i>${x.groups.includes("mountain")?"山景优先":"通勤优先"}</i><i>精装</i><i>家具核验</i></span></span><span class="arrow">›</span></button>`).join("");
       cards.querySelectorAll(".card").forEach(el=>el.onclick=()=>select(Number(el.dataset.id),true));
     }
     function select(id,fly=false){
@@ -136,7 +133,7 @@
       document.querySelector("#selected-status").textContent=`当前查看 · ${x.status}`;
       document.querySelector("#selected-name").textContent=x.name;
       document.querySelector("#selected-drive").textContent=x.drive;
-      document.querySelector("#selected-wanda").textContent=x.wanda;
+      document.querySelector("#selected-rent").textContent=x.rent;
       document.querySelector("#selected-elev").textContent=x.elev+"m";
       document.querySelector("#selected-reason").textContent=x.reason;
       document.querySelector("#amap-link").href=`https://www.amap.com/search?query=${encodeURIComponent(x.name+" 惠州大亚湾")}`;
@@ -146,7 +143,7 @@
     document.querySelectorAll(".filters button").forEach(btn=>btn.onclick=()=>{
       document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("on"));btn.classList.add("on");render(btn.dataset.filter);
     });
-    table.innerHTML=items.map(x=>`<tr><td><b>${x.name}</b><small>${x.year}</small></td><td>${x.drive}</td><td>${x.wanda}</td><td>${x.layout}<small>${x.rent}</small></td><td>${x.view}</td><td>${x.furnish}</td><td>${x.elev}m</td></tr>`).join("");
+    table.innerHTML=items.map(x=>`<tr><td><b>${x.name}</b><small>${x.year}</small></td><td>${x.drive}</td><td>${x.distance}</td><td>${x.layout}<small>${x.rent}</small></td><td>${x.view}</td><td>${x.furnish}</td><td>${x.elev}m</td></tr>`).join("");
     sources.innerHTML=items.map(x=>`<a href="${x.source}" target="_blank" rel="noreferrer">${x.name}房源参考 ↗</a>`).join("");
     render();select(1);
   </script>

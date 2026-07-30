@@ -44,11 +44,10 @@ h1 em { color:var(--green); font-style:normal; }
 .leaflet-tile-pane { filter:saturate(.72) sepia(.05) brightness(1.04); }
 .project-marker,.candidate-marker { display:grid;place-items:center;color:white;box-shadow:0 5px 14px rgba(8,47,36,.26);border:3px solid white; }
 .project-marker { width:52px;height:52px;background:var(--orange);border-radius:50% 50% 50% 12%;transform:rotate(-45deg); }
-.project-marker.wanda-marker { background:#6657a8; }
 .project-marker span { transform:rotate(45deg);font-size:11px;font-weight:900; }
 .candidate-marker { width:38px;height:38px;border-radius:50%;font:bold 13px Arial; }
 .legend { position:absolute; z-index:4; top:18px; left:18px; display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.94);padding:10px 13px;border-radius:12px;box-shadow:0 4px 16px rgba(25,50,43,.12);font-size:11px; }
-.legend span { display:flex;align-items:center;gap:5px; }.legend small { color:#78857f;border-left:1px solid #ddd;padding-left:12px; }.dot { width:9px;height:9px;border-radius:50%;background:#3c967c; }.dot.project,.dot.caution { background:var(--orange); }.dot.wanda { background:#6657a8; }.dot.best { background:#17755c; }
+.legend span { display:flex;align-items:center;gap:5px; }.legend small { color:#78857f;border-left:1px solid #ddd;padding-left:12px; }.dot { width:9px;height:9px;border-radius:50%;background:#3c967c; }.dot.project,.dot.caution { background:var(--orange); }.dot.best { background:#17755c; }
 .map-card { position:absolute; z-index:4; left:22px; bottom:22px; width:min(430px,calc(100% - 44px)); background:rgba(255,253,248,.96);border:1px solid white;border-radius:18px;padding:20px 22px;box-shadow:0 16px 50px rgba(14,47,38,.2);backdrop-filter:blur(12px); }
 .map-card-top { display:flex;justify-content:space-between;color:var(--orange);font-size:11px;font-weight:800;letter-spacing:.06em; }.map-card-top a { color:var(--green); }
 .map-card h3 { font:500 27px Georgia,"Songti SC",serif;margin:8px 0 14px; }.map-stats { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-block:1px solid #dfe3de;padding:12px 0; }
